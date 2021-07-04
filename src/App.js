@@ -1,34 +1,66 @@
-import React from 'react';
-import Header from './Header';
-import IsLoadingAndError from './IsLoadingAndError';
-import Footer from './Footer';
+import React, { Component } from 'react'
+
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  Link
 } from "react-router-dom";
-
-class App extends React.Component {
-
+import { withAuth0 } from '@auth0/auth0-react';
+import LoginButton from './LoginButton';
+import LogoutButton from './LogoutButton';
+import Profile from './Profile'
+class App extends Component {
   render() {
-    console.log('app', this.props);
-    return(
-      <>
+    console.log(this.props.auth0)
+    return (
+      <div style={{textAlign:"center" , margin:"auto" , background:"#EEDC82" , marginTop:"50px",
+       width:"50%" , height:"400px" , borderRadius:"5px"}} >
         <Router>
-          <IsLoadingAndError>
-            <Header />
-            <Switch>
-              <Route exact path="/">
-                {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
-              </Route>
-              {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
-            </Switch>
-            <Footer />
-          </IsLoadingAndError>
+       
+        <nav>
+          <ul style={{listStyleType:'none'}}>
+            {/* <li>
+              <Link to="/">Home</Link>
+            </li> */}
+            { this.props.auth0.isAuthenticated?
+            <><li>
+            <Link to="/logout">Logout</Link>
+          </li>
+          <li>
+            <Link to="/">profile</Link>
+          </li>
+            </>:
+             <li>
+             <Link to="/login">Login</Link>
+           </li>
+          
+          }
+           
+            
+          </ul>
+        </nav>
+            
+        <Switch>
+        <Route exact path="/">
+            <Profile />
+          </Route>
+          <Route path="/login">
+            <LoginButton />
+          </Route>
+          <Route path="/logout">
+            <LogoutButton />
+          </Route>
+          
+        </Switch>
+        
         </Router>
-      </>
-    );
+        
+      </div>
+    )
   }
 }
 
-export default App;
+export default withAuth0 (App)
+
+
