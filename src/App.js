@@ -9,7 +9,9 @@ import {
 import { withAuth0 } from '@auth0/auth0-react';
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
-import Profile from './Profile'
+import Profile from './Profile';
+import Content from './Content';
+
 class App extends Component {
   render() {
     console.log(this.props.auth0)
@@ -30,10 +32,12 @@ class App extends Component {
           <li>
             <Link to="/">profile</Link>
           </li>
+         
             </>:
              <li>
              <Link to="/login">Login</Link>
            </li>
+           
           
           }
            
@@ -44,6 +48,7 @@ class App extends Component {
         <Switch>
         <Route exact path="/">
             <Profile />
+            <Content />
           </Route>
           <Route path="/login">
             <LoginButton />
