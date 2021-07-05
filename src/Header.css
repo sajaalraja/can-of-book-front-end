@@ -5,3 +5,21 @@ a{
 a:hover{
   color:darkgrey;
 }
+.navbar{
+  background-color: #E52B50;
+  height: 100px;
+}
+.title{
+
+  font-family: cursive;
+  font-size: 40px;
+  
+  
+}
+.nav{
+  margin-left: 50px;
+  font-size: 20px;
+  font-family: fantasy;
+  text-shadow: 3px 3px 4px darkgrey;
+  color: black;
+}
