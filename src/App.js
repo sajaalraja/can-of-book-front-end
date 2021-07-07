@@ -24,7 +24,7 @@ class App extends React.Component {
         <Router>
           
             <Header isAuthenticated={isAuthenticated} />
-            {/* <IsLoadingAndError> */}
+            <IsLoadingAndError>
             <Switch>
             <Route exact path="/">{isAuthenticated ? <BestBooks /> : <Login />}
               </Route>
@@ -32,7 +32,7 @@ class App extends React.Component {
               </Route>
             </Switch>
             <Footer />
-          {/* </IsLoadingAndError> */}
+          </IsLoadingAndError>
         </Router>
       </>
     );
